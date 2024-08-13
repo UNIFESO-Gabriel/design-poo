@@ -1,0 +1,55 @@
+# Arquivos de log
+*.log
+*.tlg
+
+# Diretórios de build
+bin/
+obj/
+
+# Arquivos gerados pelo Visual Studio
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Arquivos do sistema operacional
+Thumbs.db
+*.DS_Store
+.DS_Store?
+Icon?
+ehthumbs.db
+[Dd]esktop.ini
+*.dll
+*.exe
+
+# Arquivos de pacotes NuGet
+*.nupkg
+*.snupkg
+# Pacotes baixados pelo NuGet
+packages/
+# Arquivo de bloqueio de dependências
+project.lock.json
+project.fragment.lock.json
+
+# Arquivos de configurações temporárias
+*.tmp
+*.temp
+
+# Diretórios de publicação
+publish/
+
+# Arquivos de ambiente de desenvolvimento
+.env
+
+# Diretórios de cache e debug
+.vscode/
+.vs/
+.idea/
+
+# Arquivos de teste
+TestResults/
+
+# Diretórios de pacotes e dependências
+node_modules/
+lib/
