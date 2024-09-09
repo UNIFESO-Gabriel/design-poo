@@ -1,0 +1,14 @@
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\bin\Debug\net8.0\TerabyteEShop.exe
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\bin\Debug\net8.0\TerabyteEShop.deps.json
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\bin\Debug\net8.0\TerabyteEShop.runtimeconfig.json
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\bin\Debug\net8.0\TerabyteEShop.dll
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\bin\Debug\net8.0\TerabyteEShop.pdb
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\obj\Debug\net8.0\TerabyteEShop.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\obj\Debug\net8.0\TerabyteEShop.AssemblyInfoInputs.cache
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\obj\Debug\net8.0\TerabyteEShop.AssemblyInfo.cs
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\obj\Debug\net8.0\TerabyteEShop.csproj.CoreCompileInputs.cache
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\obj\Debug\net8.0\TerabyteEShop.dll
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\obj\Debug\net8.0\refint\TerabyteEShop.dll
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\obj\Debug\net8.0\TerabyteEShop.pdb
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\obj\Debug\net8.0\TerabyteEShop.genruntimeconfig.cache
+C:\Users\gabri\Desktop\Codigos\Aula03\TerabyteEShop\obj\Debug\net8.0\ref\TerabyteEShop.dll
