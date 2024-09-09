@@ -114,7 +114,7 @@ namespace Calculadora
             // 
             // btnLimpar
             // 
-            this.btnLimpar.BackColor = System.Drawing.Color.White;
+            this.btnLimpar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnLimpar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLimpar.Font = new System.Drawing.Font("Consolas", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.btnLimpar.Location = new System.Drawing.Point(509, 13);
@@ -408,7 +408,7 @@ namespace Calculadora
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(605, 579);
+            this.ClientSize = new System.Drawing.Size(605, 586);
             this.Controls.Add(this.txtHistorico);
             this.Controls.Add(this.panelBotoes);
             this.Controls.Add(this.txtExpressaoResultado);
