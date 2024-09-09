@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\LibCalculadora\\LibCalculadora.csproj",
+      "projectUniqueName": "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\ProjetoCalculadora\\LibCalculadora\\LibCalculadora.csproj",
       "projectName": "LibCalculadora",
-      "projectPath": "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\LibCalculadora\\LibCalculadora.csproj",
+      "projectPath": "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\ProjetoCalculadora\\LibCalculadora\\LibCalculadora.csproj",
       "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-      "outputPath": "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\LibCalculadora\\obj\\",
+      "outputPath": "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\ProjetoCalculadora\\LibCalculadora\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
