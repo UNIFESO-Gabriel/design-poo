@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 namespace Calculadora
 {
@@ -23,9 +22,6 @@ namespace Calculadora
             base.Dispose(disposing);
         }
 
-        [DllImport("user32.dll")]
-        private static extern bool HideCaret(IntPtr hWnd);
-
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -34,7 +30,7 @@ namespace Calculadora
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtExpressaoResultado = new System.Windows.Forms.TextBox();
+            this.txtVisor = new System.Windows.Forms.TextBox();
             this.panelBotoes = new System.Windows.Forms.Panel();
             this.btnLimpar = new System.Windows.Forms.Button();
             this.btnBackspace = new System.Windows.Forms.Button();
@@ -63,23 +59,23 @@ namespace Calculadora
             this.panelBotoes.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtExpressaoResultado
+            // txtVisor
             // 
-            this.txtExpressaoResultado.BackColor = System.Drawing.Color.White;
-            this.txtExpressaoResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtExpressaoResultado.Font = new System.Drawing.Font("Consolas", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtExpressaoResultado.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.txtExpressaoResultado.Location = new System.Drawing.Point(6, 134);
-            this.txtExpressaoResultado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtExpressaoResultado.Multiline = true;
-            this.txtExpressaoResultado.Name = "txtExpressaoResultado";
-            this.txtExpressaoResultado.Size = new System.Drawing.Size(598, 90);
-            this.txtExpressaoResultado.TabIndex = 1;
-            this.txtExpressaoResultado.Text = "0";
-            this.txtExpressaoResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.txtExpressaoResultado.TextChanged += new System.EventHandler(this.txtExpressaoResultado_TextChanged);
-            this.txtExpressaoResultado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtExpressaoResultado_KeyDown);
-            this.txtExpressaoResultado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtExpressaoResultado_KeyPress);
+            this.txtVisor.BackColor = System.Drawing.Color.White;
+            this.txtVisor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtVisor.Font = new System.Drawing.Font("Consolas", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtVisor.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.txtVisor.Location = new System.Drawing.Point(6, 134);
+            this.txtVisor.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtVisor.Multiline = true;
+            this.txtVisor.Name = "txtVisor";
+            this.txtVisor.Size = new System.Drawing.Size(598, 90);
+            this.txtVisor.TabIndex = 1;
+            this.txtVisor.Text = "0";
+            this.txtVisor.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtVisor.TextChanged += new System.EventHandler(this.TxtVisor_TextChanged);
+            this.txtVisor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtExpressaoResultado_KeyDown);
+            this.txtVisor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtVisor_KeyPress);
             // 
             // panelBotoes
             // 
@@ -411,7 +407,7 @@ namespace Calculadora
             this.ClientSize = new System.Drawing.Size(605, 586);
             this.Controls.Add(this.txtHistorico);
             this.Controls.Add(this.panelBotoes);
-            this.Controls.Add(this.txtExpressaoResultado);
+            this.Controls.Add(this.txtVisor);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
@@ -484,7 +480,7 @@ namespace Calculadora
 
         #endregion
         private Panel panelBotoes;
-        private TextBox txtExpressaoResultado;
+        private TextBox txtVisor;
         private RichTextBox txtHistorico;
         private Button btnLimpar;
         private Button btnBackspace;

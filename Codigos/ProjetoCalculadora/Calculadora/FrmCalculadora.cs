@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,9 +13,20 @@ namespace Calculadora
 {
     public partial class FrmCalculadora : Form
     {
+        [DllImport("user32.dll")]
+        private static extern bool HideCaret(IntPtr hWnd);
+
+        private void SetUpTxtVisor()
+        {
+            txtVisor.GotFocus += (s, e) => HideCaret(txtVisor.Handle);
+            txtVisor.MouseDown += (s, e) => HideCaret(txtVisor.Handle);
+            txtVisor.KeyUp += (s, e) => HideCaret(txtVisor.Handle);
+        }
+
         public FrmCalculadora()
         {
             InitializeComponent();
+            SetUpTxtVisor();
             //CreateCalculatorNumericButtons();
         }
 
@@ -22,9 +34,9 @@ namespace Calculadora
         private void FrmCalculadora_Shown(object sender, EventArgs e)
         {
 
-            this.txtExpressaoResultado.SelectionStart = txtExpressaoResultado.Text.Length; // Move o cursor para o final.
-            txtExpressaoResultado.SelectionLength = 0; // Remove qualquer seleção inicial do texto.
-            this.txtExpressaoResultado.Focus();
+            this.txtVisor.SelectionStart = txtVisor.Text.Length; // Move o cursor para o final.
+            txtVisor.SelectionLength = 0; // Remove qualquer seleção inicial do texto.
+            this.txtVisor.Focus();
         }
 
         private void btn_MouseHover(object sender, EventArgs e)
@@ -34,7 +46,7 @@ namespace Calculadora
 
         private void btn_MouseLeave(object sender, EventArgs e)
         {
-            Button btn = sender as Button;
+            Button btn = (Button)sender;
             btn.BackColor = Color.Gray;
             btn.FlatAppearance.BorderSize = 0;
             btn.FlatStyle = FlatStyle.Flat;
@@ -52,7 +64,7 @@ namespace Calculadora
             }
         }
 
-        private void txtExpressaoResultado_KeyPress(object sender, KeyPressEventArgs e)
+        private void TxtVisor_KeyPress(object sender, KeyPressEventArgs e)
         {
             var txtVisor = (TextBox)sender;
             // Permite apenas dígitos, vírgula decimal e teclas de controle
@@ -89,9 +101,12 @@ namespace Calculadora
             }
         }
 
-        private void txtExpressaoResultado_TextChanged(object sender, EventArgs e)
+        private void TxtVisor_TextChanged(object sender, EventArgs e)
         {
             var txtVisor = (TextBox)sender;
+
+            HideCaret(txtVisor.Handle);
+
             if (string.IsNullOrEmpty(txtVisor.Text))
             {
                 txtVisor.Text = "0";
