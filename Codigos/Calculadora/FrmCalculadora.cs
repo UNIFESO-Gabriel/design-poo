@@ -38,7 +38,65 @@ namespace Calculadora
             btn.BackColor = Color.Gray;
             btn.FlatAppearance.BorderSize = 0;
             btn.FlatStyle = FlatStyle.Flat;
-            btn.Font = new Font("Consolas", 15.75F, FontStyle.Bold, GraphicsUnit.Point, ((byte)(0)));
+            btn.Font = new Font("Consolas", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+        }
+
+        private void txtExpressaoResultado_KeyDown(object sender, KeyEventArgs e)
+        {
+            var txtVisor = (TextBox)sender;
+            if ((e.KeyCode == Keys.Back || e.KeyCode == Keys.Delete) &&
+                (txtVisor.Text == "0" || (txtVisor.SelectionStart == 0 && txtVisor.SelectionLength == txtVisor.Text.Length)))
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void txtExpressaoResultado_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            var txtVisor = (TextBox)sender;
+            // Permite apenas dígitos, vírgula decimal e teclas de controle
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Permite apenas uma vírgula decimal
+            if (e.KeyChar == ',' && txtVisor.Text.Contains(','))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            // Trata a entrada de dígitos
+            if (char.IsDigit(e.KeyChar))
+            {
+                // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
+                if (txtVisor.Text == "0")
+                {
+                    txtVisor.Text = e.KeyChar.ToString();
+                    txtVisor.SelectionStart = txtVisor.Text.Length;
+                    e.Handled = true;
+                }
+                // Se todo o texto estiver selecionado, substitui o texto existente
+                else if (txtVisor.SelectionLength == txtVisor.Text.Length)
+                {
+                    txtVisor.Text = e.KeyChar.ToString();
+                    txtVisor.SelectionStart = txtVisor.Text.Length;
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void txtExpressaoResultado_TextChanged(object sender, EventArgs e)
+        {
+            var txtVisor = (TextBox)sender;
+            if (string.IsNullOrEmpty(txtVisor.Text))
+            {
+                txtVisor.Text = "0";
+                txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace Calculadora
 {
@@ -22,6 +23,9 @@ namespace Calculadora
             base.Dispose(disposing);
         }
 
+        [DllImport("user32.dll")]
+        private static extern bool HideCaret(IntPtr hWnd);
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -30,54 +34,77 @@ namespace Calculadora
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtExpressaoResultado = new TextBox();
-            this.panelBotoes = new Panel();
+            this.txtExpressaoResultado = new System.Windows.Forms.TextBox();
+            this.panelBotoes = new System.Windows.Forms.Panel();
+            this.txtHistorico = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // txtExpressaoResultado
             // 
-            this.txtExpressaoResultado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtExpressaoResultado.BorderStyle = BorderStyle.FixedSingle;
-            this.txtExpressaoResultado.Font = new System.Drawing.Font("Consolas", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtExpressaoResultado.BackColor = System.Drawing.Color.DarkGray;
+            this.txtExpressaoResultado.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtExpressaoResultado.Font = new System.Drawing.Font("Consolas", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtExpressaoResultado.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtExpressaoResultado.Location = new System.Drawing.Point(-4, 68);
+            this.txtExpressaoResultado.Location = new System.Drawing.Point(-5, 153);
+            this.txtExpressaoResultado.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtExpressaoResultado.Multiline = true;
             this.txtExpressaoResultado.Name = "txtExpressaoResultado";
-            this.txtExpressaoResultado.Size = new System.Drawing.Size(564, 74);
+            this.txtExpressaoResultado.Size = new System.Drawing.Size(658, 93);
             this.txtExpressaoResultado.TabIndex = 1;
             this.txtExpressaoResultado.Text = "0";
-            this.txtExpressaoResultado.TextAlign = HorizontalAlignment.Right;
+            this.txtExpressaoResultado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtExpressaoResultado.TextChanged += new System.EventHandler(this.txtExpressaoResultado_TextChanged);
+            this.txtExpressaoResultado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtExpressaoResultado_KeyDown);
+            this.txtExpressaoResultado.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtExpressaoResultado_KeyPress);
             // 
             // panelBotoes
             // 
-            this.panelBotoes.Location = new System.Drawing.Point(-4, 144);
+            this.panelBotoes.Location = new System.Drawing.Point(-5, 241);
+            this.panelBotoes.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panelBotoes.Name = "panelBotoes";
-            this.panelBotoes.Size = new System.Drawing.Size(564, 359);
+            this.panelBotoes.Size = new System.Drawing.Size(658, 339);
             this.panelBotoes.TabIndex = 2;
+            // 
+            // txtHistorico
+            // 
+            this.txtHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtHistorico.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtHistorico.Font = new System.Drawing.Font("Consolas", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.txtHistorico.ForeColor = System.Drawing.SystemColors.Menu;
+            this.txtHistorico.Location = new System.Drawing.Point(6, 2);
+            this.txtHistorico.Name = "txtHistorico";
+            this.txtHistorico.ReadOnly = true;
+            this.txtHistorico.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtHistorico.Size = new System.Drawing.Size(641, 154);
+            this.txtHistorico.TabIndex = 3;
+            this.txtHistorico.Text = "";
             // 
             // FrmCalculadora
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(557, 502);
+            this.ClientSize = new System.Drawing.Size(650, 579);
+            this.Controls.Add(this.txtHistorico);
             this.Controls.Add(this.panelBotoes);
             this.Controls.Add(this.txtExpressaoResultado);
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.MaximizeBox = false;
             this.Name = "FrmCalculadora";
             this.ShowIcon = false;
-            this.StartPosition = FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculadora";
             this.Shown += new System.EventHandler(this.FrmCalculadora_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private void CreateCalculatorNumericButtons()
         {
             int numRows = 6; // Número de linhas.
-            int numCols = 4; // Número de colunas.
+            int numCols = 3; // Número de colunas.
             int padding = 2; // Espaço entre os botões.
 
             // Calcula a largura e a altura de cada botão.
@@ -131,8 +158,9 @@ namespace Calculadora
         }
 
         #endregion
-        private TextBox txtExpressaoResultado;
         private Panel panelBotoes;
+        private TextBox txtExpressaoResultado;
+        private RichTextBox txtHistorico;
     }
 }
 
