@@ -15,7 +15,7 @@ namespace Calculadora
         public FrmCalculadora()
         {
             InitializeComponent();
-            CreateCalculatorNumericButtons();
+            //CreateCalculatorNumericButtons();
         }
 
 
