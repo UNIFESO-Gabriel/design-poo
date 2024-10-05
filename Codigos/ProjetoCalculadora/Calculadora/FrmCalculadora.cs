@@ -13,10 +13,12 @@ namespace Calculadora
 {
     public partial class FrmCalculadora : Form
     {
+        private readonly List<char> listaCaracteresPermitidos = new() { ',', '(', ')', '*', '/', '+', '-', '%' };
+
         [DllImport("user32.dll")]
         private static extern bool HideCaret(IntPtr hWnd);
 
-        private void SetUpTxtVisor()
+        private void EsconderCursorTxtVisor()
         {
             txtVisor.GotFocus += (s, e) => HideCaret(txtVisor.Handle);
             txtVisor.MouseDown += (s, e) => HideCaret(txtVisor.Handle);
@@ -26,8 +28,7 @@ namespace Calculadora
         public FrmCalculadora()
         {
             InitializeComponent();
-            SetUpTxtVisor();
-            //CreateCalculatorNumericButtons();
+            EsconderCursorTxtVisor();
         }
 
 
@@ -67,22 +68,30 @@ namespace Calculadora
         private void TxtVisor_KeyPress(object sender, KeyPressEventArgs e)
         {
             var txtVisor = (TextBox)sender;
-            // Permite apenas dígitos, vírgula decimal e teclas de controle
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != ',')
+
+            // Se a tecla pressionada for Enter, calcula a expressão em txtVisor.
+            if (e.KeyChar == (char)Keys.Enter)
             {
-                e.Handled = true;
-                return;
+                try
+                {
+                    var resultado = new DataTable().Compute(txtVisor.Text, null);
+                    txtVisor.Text = resultado.ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro");
+                }
             }
 
-            // Permite apenas uma vírgula decimal
-            if (e.KeyChar == ',' && txtVisor.Text.Contains(','))
+            // Permite apenas dígitos, vírgula decimal e teclas de controle
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && !listaCaracteresPermitidos.Contains(e.KeyChar))
             {
                 e.Handled = true;
                 return;
             }
 
             // Trata a entrada de dígitos
-            if (char.IsDigit(e.KeyChar))
+            if (char.IsDigit(e.KeyChar) || listaCaracteresPermitidos.Contains(e.KeyChar))
             {
                 // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
                 if (txtVisor.Text == "0")
@@ -111,6 +120,197 @@ namespace Calculadora
             {
                 txtVisor.Text = "0";
                 txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
+        }
+
+        private void btn0_Click(object sender, EventArgs e)
+        {
+            if (!txtVisor.Text.All(x => x == '0'))
+                txtVisor.Text += '0';
+        }
+
+        private void btn1_Click(object sender, EventArgs e)
+        {
+            // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
+            if (txtVisor.Text == "0")
+            {
+                txtVisor.Text = "1";
+                txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
+            else
+                txtVisor.Text += '1';
+        }
+
+        private void btn2_Click(object sender, EventArgs e)
+        {
+            // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
+            if (txtVisor.Text == "0")
+            {
+                txtVisor.Text = "2";
+                txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
+            else
+                txtVisor.Text += '2';
+        }
+
+        private void btn3_Click(object sender, EventArgs e)
+        {
+            // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
+            if (txtVisor.Text == "0")
+            {
+                txtVisor.Text = "3";
+                txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
+            else
+                txtVisor.Text += '3';
+        }
+
+        private void btn4_Click(object sender, EventArgs e)
+        {
+            // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
+            if (txtVisor.Text == "0")
+            {
+                txtVisor.Text = "4";
+                txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
+            else
+                txtVisor.Text += '4';
+        }
+
+        private void btn5_Click(object sender, EventArgs e)
+        {
+            // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
+            if (txtVisor.Text == "0")
+            {
+                txtVisor.Text = "5";
+                txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
+            else
+                txtVisor.Text += '5';
+        }
+
+        private void btn6_Click(object sender, EventArgs e)
+        {
+            // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
+            if (txtVisor.Text == "0")
+            {
+                txtVisor.Text = "6";
+                txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
+            else
+                txtVisor.Text += '6';
+        }
+
+        private void btn7_Click(object sender, EventArgs e)
+        {
+            // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
+            if (txtVisor.Text == "0")
+            {
+                txtVisor.Text = "7";
+                txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
+            else
+                txtVisor.Text += '7';
+        }
+
+        private void btn8_Click(object sender, EventArgs e)
+        {
+            // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
+            if (txtVisor.Text == "0")
+            {
+                txtVisor.Text = "8";
+                txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
+            else
+                txtVisor.Text += '8';
+        }
+
+        private void btn9_Click(object sender, EventArgs e)
+        {
+            // Se o texto atual for "0" e um novo dígito for digitado, substitui o "0"
+            if (txtVisor.Text == "0")
+            {
+                txtVisor.Text = "9";
+                txtVisor.SelectionStart = txtVisor.Text.Length;
+            }
+            else
+                txtVisor.Text += '9';
+        }
+
+        private void btnDivisao_Click(object sender, EventArgs e)
+        {
+            // precisa haver um número antes para inserir o símbolo de divisão.
+            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+                txtVisor.Text += '/';
+        }
+
+        private void btnMultiplicacao_Click(object sender, EventArgs e)
+        {
+            // precisa haver um número antes para inserir o símbolo de divisão.
+            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+                txtVisor.Text += '*';
+        }
+
+        private void btnSubtracao_Click(object sender, EventArgs e)
+        {
+            // precisa haver um número antes para inserir o símbolo de divisão.
+            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+                txtVisor.Text += '-';
+        }
+
+        private void btnAdicao_Click(object sender, EventArgs e)
+        {
+            // precisa haver um número antes para inserir o símbolo de divisão.
+            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+                txtVisor.Text += '+';
+        }
+
+        private void btnElevadoQuadrado_Click(object sender, EventArgs e)
+        {
+            // precisa haver um número antes para inserir o símbolo de divisão.
+            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+                txtVisor.Text += "**2";
+        }
+
+        private void btnSqrt_Click(object sender, EventArgs e)
+        {
+            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+                txtVisor.Text += "**0,5";
+        }
+
+        private void btnAbreParenteses_Click(object sender, EventArgs e)
+        {
+            txtVisor.Text += "(";
+        }
+
+        private void btnFechaParenteses_Click(object sender, EventArgs e)
+        {
+            if (txtVisor.Text.Any(x => x == '('))
+            {
+                txtVisor.Text += ')';
+            }
+        }
+
+        private void btnBackspace_Click(object sender, EventArgs e)
+        {
+            txtVisor.Text = txtVisor.Text.Remove(txtVisor.Text.Length - 1);
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtVisor.Text = "";
+        }
+
+        private void btnIgual_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var resultado = new DataTable().Compute(txtVisor.Text, null);
+                txtVisor.Text = resultado.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro");
             }
         }
     }
