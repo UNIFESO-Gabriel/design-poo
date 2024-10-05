@@ -8,12 +8,15 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Antlr.Runtime;
+using NCalc;
+using System.Text.RegularExpressions;
 
 namespace Calculadora
 {
     public partial class FrmCalculadora : Form
     {
-        private readonly List<char> listaCaracteresPermitidos = new() { ',', '(', ')', '*', '/', '+', '-', '%' };
+        private readonly List<char> listaCaracteresPermitidos = new() { ',', '(', ')', '*', '/', '+', '-', '%', '^' };
 
         [DllImport("user32.dll")]
         private static extern bool HideCaret(IntPtr hWnd);
@@ -23,6 +26,14 @@ namespace Calculadora
             txtVisor.GotFocus += (s, e) => HideCaret(txtVisor.Handle);
             txtVisor.MouseDown += (s, e) => HideCaret(txtVisor.Handle);
             txtVisor.KeyUp += (s, e) => HideCaret(txtVisor.Handle);
+        }
+
+        private string ParseExpression(string input)
+        {
+            input = input.Replace(',', '.');
+            string pattern = @"((?:\-?\d+\.?\d*|\-?\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)|[a-zA-Z]+\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)))\s*\^\s*((?:\-?\d+\.?\d*|\-?\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)|[a-zA-Z]+\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)))";
+
+            return Regex.Replace(input, pattern, "Pow($1, $2)");
         }
 
         public FrmCalculadora()
@@ -69,18 +80,26 @@ namespace Calculadora
         {
             var txtVisor = (TextBox)sender;
 
-            // Se a tecla pressionada for Enter, calcula a expressão em txtVisor.
+            // Se a tecla Enter for pressionada, calcula a expressão
             if (e.KeyChar == (char)Keys.Enter)
             {
                 try
                 {
-                    var resultado = new DataTable().Compute(txtVisor.Text, null);
-                    txtVisor.Text = resultado.ToString();
+                    var exp = ParseExpression(txtVisor.Text);
+                    var expression = new Expression(exp);
+                    txtVisor.Text = expression.Evaluate().ToString();
+                }
+
+                catch (EvaluationException ex)
+                {
+                    MessageBox.Show($"Houve um erro durante o cálculo da expressão: {ex.Message}");
+                    txtVisor.Text = "0";
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro");
-                }
+                    MessageBox.Show($"Erro inesperado: {ex.Message}");
+                    txtVisor.Text = "0";
+                } 
             }
 
             // Permite apenas dígitos, vírgula decimal e teclas de controle
@@ -267,15 +286,16 @@ namespace Calculadora
 
         private void btnElevadoQuadrado_Click(object sender, EventArgs e)
         {
-            // precisa haver um número antes para inserir o símbolo de divisão.
+            // precisa haver um número antes para inserir o símbolo de elevado ao quadrado.
             if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
-                txtVisor.Text += "**2";
+                txtVisor.Text += "^2";
+
         }
 
         private void btnSqrt_Click(object sender, EventArgs e)
         {
             if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
-                txtVisor.Text += "**0,5";
+                txtVisor.Text += "^0,5";
         }
 
         private void btnAbreParenteses_Click(object sender, EventArgs e)
@@ -305,12 +325,20 @@ namespace Calculadora
         {
             try
             {
-                var resultado = new DataTable().Compute(txtVisor.Text, null);
-                txtVisor.Text = resultado.ToString();
+                var exp = ParseExpression(txtVisor.Text);
+                var expression = new Expression(exp);
+                txtVisor.Text = expression.Evaluate().ToString();
+            }
+
+            catch (EvaluationException ex)
+            {
+                MessageBox.Show($"Houve um erro durante o cálculo da expressão: {ex.Message}");
+                txtVisor.Text = "0";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro");
+                MessageBox.Show($"Erro inesperado: {ex.Message}");
+                txtVisor.Text = "0";
             }
         }
     }
