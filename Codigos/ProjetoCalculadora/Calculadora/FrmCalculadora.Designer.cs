@@ -50,7 +50,7 @@ namespace Calculadora
             btn2 = new Button();
             btnIgual = new Button();
             btnAdicao = new Button();
-            btnPorcentagem = new Button();
+            btnModulo = new Button();
             btnDecimal = new Button();
             btn4 = new Button();
             btn1 = new Button();
@@ -96,7 +96,7 @@ namespace Calculadora
             panelBotoes.Controls.Add(btn2);
             panelBotoes.Controls.Add(btnIgual);
             panelBotoes.Controls.Add(btnAdicao);
-            panelBotoes.Controls.Add(btnPorcentagem);
+            panelBotoes.Controls.Add(btnModulo);
             panelBotoes.Controls.Add(btnDecimal);
             panelBotoes.Controls.Add(btn4);
             panelBotoes.Controls.Add(btn1);
@@ -342,17 +342,19 @@ namespace Calculadora
             btnAdicao.UseVisualStyleBackColor = false;
             btnAdicao.Click += btnAdicao_Click;
             // 
-            // btnPorcentagem
+            // btnModulo
             // 
-            btnPorcentagem.BackColor = Color.White;
-            btnPorcentagem.FlatStyle = FlatStyle.Flat;
-            btnPorcentagem.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnPorcentagem.Location = new Point(212, 268);
-            btnPorcentagem.Name = "btnPorcentagem";
-            btnPorcentagem.Size = new Size(93, 79);
-            btnPorcentagem.TabIndex = 4;
-            btnPorcentagem.Text = "%";
-            btnPorcentagem.UseVisualStyleBackColor = false;
+            btnModulo.BackColor = Color.White;
+            btnModulo.FlatStyle = FlatStyle.Flat;
+            btnModulo.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnModulo.Location = new Point(212, 268);
+            btnModulo.Name = "btnModulo";
+            btnModulo.RightToLeft = RightToLeft.Yes;
+            btnModulo.Size = new Size(93, 79);
+            btnModulo.TabIndex = 4;
+            btnModulo.Text = "Mod";
+            btnModulo.UseVisualStyleBackColor = false;
+            btnModulo.Click += btnModulo_Click;
             // 
             // btnDecimal
             // 
@@ -462,7 +464,7 @@ namespace Calculadora
         private Button btn2;
         private Button btnIgual;
         private Button btnAdicao;
-        private Button btnPorcentagem;
+        private Button btnModulo;
         private Button btnDecimal;
         private Button btn4;
         private Button btn1;

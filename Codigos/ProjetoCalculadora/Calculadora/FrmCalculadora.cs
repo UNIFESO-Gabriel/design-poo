@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Antlr.Runtime;
 using NCalc;
 using System.Text.RegularExpressions;
+using System.Linq.Expressions;
 
 namespace Calculadora
 {
@@ -30,11 +31,31 @@ namespace Calculadora
 
         private string ParseExpression(string input)
         {
-            input = input.Replace(',', '.');
-            string pattern = @"((?:\-?\d+\.?\d*|\-?\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)|[a-zA-Z]+\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)))\s*\^\s*((?:\-?\d+\.?\d*|\-?\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)|[a-zA-Z]+\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)))";
+            input = input.Replace(',', '.').Replace(" Mod ", "%");
 
-            return Regex.Replace(input, pattern, "Pow($1, $2)");
+            var powerPattern = @"((?:\-?\d+\.?\d*|\-?\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)|[a-zA-Z]+\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)))\s*\^\s*((?:\-?\d+\.?\d*|\-?\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)|[a-zA-Z]+\((?:[^()]+|\((?:[^()]+|\([^()]*\))*\))*\)))";
+
+            input = Regex.Replace(input, powerPattern, "Pow($1, $2)");
+            input = ProcessSquareRoots(input);
+
+            return input;
         }
+
+        private string ProcessSquareRoots(string input)
+        {
+            
+            return Regex.Replace(input, @"√(\((?:[^()]+|\([^()]*\))*\)|\d+\.?\d*|[a-zA-Z]+)", match =>
+            {
+                string innerExpression = match.Groups[1].Value;
+                if (innerExpression.Contains("√"))
+                {
+                    // Processa recursivamente as raízes quadradas aninhadas.
+                    innerExpression = ProcessSquareRoots(innerExpression);
+                }
+                return $"Sqrt({innerExpression})";
+            });
+        }
+
 
         public FrmCalculadora()
         {
@@ -80,13 +101,25 @@ namespace Calculadora
         {
             var txtVisor = (TextBox)sender;
 
+            // se a tecla Backspace for pressionada, remove o último caractere
+            if (e.KeyChar == (char)Keys.Back)
+            {
+                if (txtVisor.Text.Length > 0)
+                {
+                    txtVisor.Text = txtVisor.Text.Remove(txtVisor.Text.Length - 1);
+                    txtVisor.SelectionStart = txtVisor.Text.Length;
+                }
+                e.Handled = true;
+                return;
+            }
+
             // Se a tecla Enter for pressionada, calcula a expressão
             if (e.KeyChar == (char)Keys.Enter)
             {
                 try
                 {
                     var exp = ParseExpression(txtVisor.Text);
-                    var expression = new Expression(exp);
+                    var expression = new NCalc.Expression(exp);
                     txtVisor.Text = expression.Evaluate().ToString();
                 }
 
@@ -99,7 +132,7 @@ namespace Calculadora
                 {
                     MessageBox.Show($"Erro inesperado: {ex.Message}");
                     txtVisor.Text = "0";
-                } 
+                }
             }
 
             // Permite apenas dígitos, vírgula decimal e teclas de controle
@@ -259,48 +292,50 @@ namespace Calculadora
         private void btnDivisao_Click(object sender, EventArgs e)
         {
             // precisa haver um número antes para inserir o símbolo de divisão.
-            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+            if (txtVisor.Text.Length > 0)
                 txtVisor.Text += '/';
         }
 
         private void btnMultiplicacao_Click(object sender, EventArgs e)
         {
-            // precisa haver um número antes para inserir o símbolo de divisão.
-            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+         
+            if (txtVisor.Text.Length > 0)
                 txtVisor.Text += '*';
         }
 
         private void btnSubtracao_Click(object sender, EventArgs e)
         {
-            // precisa haver um número antes para inserir o símbolo de divisão.
-            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+            if (txtVisor.Text.Length > 0)
                 txtVisor.Text += '-';
         }
 
         private void btnAdicao_Click(object sender, EventArgs e)
         {
-            // precisa haver um número antes para inserir o símbolo de divisão.
-            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+            if (txtVisor.Text.Length > 0)
                 txtVisor.Text += '+';
         }
 
         private void btnElevadoQuadrado_Click(object sender, EventArgs e)
         {
-            // precisa haver um número antes para inserir o símbolo de elevado ao quadrado.
-            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
+            if (txtVisor.Text.Length > 0)
                 txtVisor.Text += "^2";
 
         }
 
         private void btnSqrt_Click(object sender, EventArgs e)
         {
-            if (txtVisor.Text.Length > 0 && char.IsDigit(txtVisor.Text[txtVisor.Text.Length - 1]))
-                txtVisor.Text += "^0,5";
+            if (txtVisor.Text == "0")
+                txtVisor.Text = "√";
+            else
+                txtVisor.Text += "√";
         }
 
         private void btnAbreParenteses_Click(object sender, EventArgs e)
         {
-            txtVisor.Text += "(";
+            if (txtVisor.Text == "0")
+                txtVisor.Text = "(";
+            else
+                txtVisor.Text += "(";
         }
 
         private void btnFechaParenteses_Click(object sender, EventArgs e)
@@ -320,13 +355,21 @@ namespace Calculadora
         {
             txtVisor.Text = "";
         }
+        
+        private void btnModulo_Click(object sender, EventArgs e)
+        {
+            if (txtVisor.Text.Length > 0)
+            {
+                txtVisor.Text += " Mod ";
+            }
+        }
 
         private void btnIgual_Click(object sender, EventArgs e)
         {
             try
             {
                 var exp = ParseExpression(txtVisor.Text);
-                var expression = new Expression(exp);
+                var expression = new NCalc.Expression(exp);
                 txtVisor.Text = expression.Evaluate().ToString();
             }
 
