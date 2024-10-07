@@ -72,9 +72,8 @@ namespace Calculadora
             txtVisor.TabIndex = 1;
             txtVisor.Text = "0";
             txtVisor.TextAlign = HorizontalAlignment.Right;
-            txtVisor.TextChanged += TxtVisor_TextChanged;
-            txtVisor.KeyDown += txtExpressaoResultado_KeyDown;
-            txtVisor.KeyPress += TxtVisor_KeyPress;
+            txtVisor.TextChanged += txtVisor_TextChanged;
+            txtVisor.KeyDown += txtVisor_KeyDown;
             // 
             // panelBotoes
             // 
@@ -438,6 +437,8 @@ namespace Calculadora
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Calculadora";
             Shown += FrmCalculadora_Shown;
+            KeyDown += FrmCalculadora_KeyDown;
+            KeyPress += FrmCalculadora_KeyPress;
             panelBotoes.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
