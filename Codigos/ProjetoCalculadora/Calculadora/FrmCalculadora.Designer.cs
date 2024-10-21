@@ -63,17 +63,16 @@ namespace Calculadora
             // 
             txtVisor.BackColor = Color.White;
             txtVisor.BorderStyle = BorderStyle.FixedSingle;
-            txtVisor.Font = new Font("Consolas", 27.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txtVisor.Font = new Font("Arial", 27.75F, FontStyle.Bold, GraphicsUnit.Point);
             txtVisor.ForeColor = SystemColors.InfoText;
             txtVisor.Location = new Point(6, 170);
             txtVisor.Margin = new Padding(4, 3, 4, 3);
             txtVisor.Name = "txtVisor";
-            txtVisor.Size = new Size(591, 51);
+            txtVisor.Size = new Size(591, 50);
             txtVisor.TabIndex = 1;
             txtVisor.Text = "0";
             txtVisor.TextAlign = HorizontalAlignment.Right;
             txtVisor.TextChanged += txtVisor_TextChanged;
-            txtVisor.KeyDown += txtVisor_KeyDown;
             // 
             // panelBotoes
             // 
