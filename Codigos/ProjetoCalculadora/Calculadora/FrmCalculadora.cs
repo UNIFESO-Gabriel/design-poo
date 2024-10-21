@@ -45,6 +45,12 @@ namespace Calculadora
             });
         }
 
+        private void AddToHistory(string expression, string result)
+        {
+            string item = $"{expression.PadRight(expression.Length + 16)}= {result}";
+            lvHistorico.Items.Insert(0, new ListViewItem(item));
+        }
+
         public FrmCalculadora()
         {
             InitializeComponent();
@@ -262,9 +268,11 @@ namespace Calculadora
         {
             try
             {
+                var raw_exp = txtVisor.Text;
                 var exp = ParseExpression(txtVisor.Text);
-                var expression = new Expression(exp);
+                var expression = new NCalc.Expression(exp);
                 txtVisor.Text = expression.Evaluate().ToString();
+                AddToHistory(raw_exp, txtVisor.Text);
                 calculouExpressao = true;
             }
             catch (EvaluationException ex)
@@ -327,9 +335,11 @@ namespace Calculadora
             {
                 try
                 {
+                    var raw_exp = txtVisor.Text;
                     var exp = ParseExpression(txtVisor.Text);
-                    var expression = new Expression(exp);
+                    var expression = new NCalc.Expression(exp);
                     txtVisor.Text = expression.Evaluate().ToString();
+                    AddToHistory(raw_exp, txtVisor.Text);
                     txtVisor.SelectionStart = txtVisor.Text.Length;
                     calculouExpressao = true;
                 }
@@ -343,6 +353,16 @@ namespace Calculadora
                     MessageBox.Show($"Erro inesperado: {ex.Message}");
                     txtVisor.Text = "0";
                 }
+            }
+        }
+
+        private void lvHistorico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvHistorico.SelectedItems.Count == 1) // Verifica se exatamente um item está selecionado
+            {
+                string selectedItem = lvHistorico.SelectedItems[0].Text;
+                string expressao = selectedItem.Split('=')[0].Trim();
+                txtVisor.Text = expressao;
             }
         }
     }

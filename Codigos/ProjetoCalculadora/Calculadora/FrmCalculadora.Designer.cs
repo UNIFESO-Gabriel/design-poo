@@ -30,6 +30,7 @@ namespace Calculadora
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCalculadora));
             txtVisor = new TextBox();
             panelBotoes = new Panel();
             btnLimpar = new Button();
@@ -55,7 +56,8 @@ namespace Calculadora
             btn4 = new Button();
             btn1 = new Button();
             btn0 = new Button();
-            txtHistorico = new RichTextBox();
+            lvHistorico = new ListView();
+            colHistorico = new ColumnHeader();
             panelBotoes.SuspendLayout();
             SuspendLayout();
             // 
@@ -405,19 +407,31 @@ namespace Calculadora
             btn0.UseVisualStyleBackColor = false;
             btn0.Click += btn0_Click;
             // 
-            // txtHistorico
+            // lvHistorico
             // 
-            txtHistorico.BackColor = Color.FromArgb(64, 64, 64);
-            txtHistorico.BorderStyle = BorderStyle.None;
-            txtHistorico.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
-            txtHistorico.ForeColor = SystemColors.Menu;
-            txtHistorico.Location = new Point(9, 2);
-            txtHistorico.Name = "txtHistorico";
-            txtHistorico.ReadOnly = true;
-            txtHistorico.RightToLeft = RightToLeft.Yes;
-            txtHistorico.Size = new Size(588, 162);
-            txtHistorico.TabIndex = 3;
-            txtHistorico.Text = "";
+            lvHistorico.Alignment = ListViewAlignment.Default;
+            lvHistorico.BackColor = Color.FromArgb(64, 64, 64);
+            lvHistorico.BorderStyle = BorderStyle.None;
+            lvHistorico.Columns.AddRange(new ColumnHeader[] { colHistorico });
+            lvHistorico.Dock = DockStyle.Top;
+            lvHistorico.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lvHistorico.ForeColor = SystemColors.Window;
+            lvHistorico.FullRowSelect = true;
+            lvHistorico.GridLines = true;
+            lvHistorico.HeaderStyle = ColumnHeaderStyle.None;
+            lvHistorico.Location = new Point(0, 0);
+            lvHistorico.MultiSelect = false;
+            lvHistorico.Name = "lvHistorico";
+            lvHistorico.Size = new Size(605, 159);
+            lvHistorico.TabIndex = 3;
+            lvHistorico.UseCompatibleStateImageBehavior = false;
+            lvHistorico.View = View.Details;
+            lvHistorico.SelectedIndexChanged += lvHistorico_SelectedIndexChanged;
+            // 
+            // colHistorico
+            // 
+            colHistorico.Text = "Historico";
+            colHistorico.Width = 605;
             // 
             // FrmCalculadora
             // 
@@ -425,14 +439,14 @@ namespace Calculadora
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
             ClientSize = new Size(605, 586);
-            Controls.Add(txtHistorico);
+            Controls.Add(lvHistorico);
             Controls.Add(panelBotoes);
             Controls.Add(txtVisor);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 3, 4, 3);
             MaximizeBox = false;
             Name = "FrmCalculadora";
-            ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Calculadora";
             Shown += FrmCalculadora_Shown;
@@ -469,7 +483,8 @@ namespace Calculadora
         private Button btn4;
         private Button btn1;
         private Button btn0;
-        private RichTextBox txtHistorico;
+        private ListView lvHistorico;
+        private ColumnHeader colHistorico;
     }
 }
 
