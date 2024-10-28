@@ -111,7 +111,7 @@ namespace Calculadora
             // 
             btnLimpar.BackColor = Color.FromArgb(255, 128, 128);
             btnLimpar.FlatStyle = FlatStyle.Flat;
-            btnLimpar.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnLimpar.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnLimpar.Location = new Point(509, 13);
             btnLimpar.Name = "btnLimpar";
             btnLimpar.Size = new Size(93, 79);
@@ -124,7 +124,7 @@ namespace Calculadora
             // 
             btnBackspace.BackColor = Color.White;
             btnBackspace.FlatStyle = FlatStyle.Flat;
-            btnBackspace.Font = new Font("Consolas", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnBackspace.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnBackspace.Location = new Point(410, 13);
             btnBackspace.Name = "btnBackspace";
             btnBackspace.Size = new Size(93, 79);
@@ -137,7 +137,7 @@ namespace Calculadora
             // 
             btnDivisao.BackColor = Color.White;
             btnDivisao.FlatStyle = FlatStyle.Flat;
-            btnDivisao.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDivisao.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnDivisao.Location = new Point(311, 13);
             btnDivisao.Name = "btnDivisao";
             btnDivisao.Size = new Size(93, 79);
@@ -150,7 +150,7 @@ namespace Calculadora
             // 
             btn9.BackColor = Color.White;
             btn9.FlatStyle = FlatStyle.Flat;
-            btn9.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn9.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btn9.Location = new Point(212, 13);
             btn9.Name = "btn9";
             btn9.Size = new Size(93, 79);
@@ -163,7 +163,7 @@ namespace Calculadora
             // 
             btn8.BackColor = Color.White;
             btn8.FlatStyle = FlatStyle.Flat;
-            btn8.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn8.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btn8.Location = new Point(113, 13);
             btn8.Name = "btn8";
             btn8.Size = new Size(93, 79);
@@ -176,7 +176,7 @@ namespace Calculadora
             // 
             btn7.BackColor = Color.White;
             btn7.FlatStyle = FlatStyle.Flat;
-            btn7.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn7.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btn7.Location = new Point(14, 13);
             btn7.Name = "btn7";
             btn7.Size = new Size(93, 79);
@@ -189,7 +189,7 @@ namespace Calculadora
             // 
             btnFechaParenteses.BackColor = Color.White;
             btnFechaParenteses.FlatStyle = FlatStyle.Flat;
-            btnFechaParenteses.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnFechaParenteses.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnFechaParenteses.Location = new Point(509, 98);
             btnFechaParenteses.Name = "btnFechaParenteses";
             btnFechaParenteses.Size = new Size(93, 79);
@@ -202,7 +202,7 @@ namespace Calculadora
             // 
             btnAbreParenteses.BackColor = Color.White;
             btnAbreParenteses.FlatStyle = FlatStyle.Flat;
-            btnAbreParenteses.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAbreParenteses.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnAbreParenteses.Location = new Point(410, 98);
             btnAbreParenteses.Name = "btnAbreParenteses";
             btnAbreParenteses.Size = new Size(93, 79);
@@ -215,7 +215,7 @@ namespace Calculadora
             // 
             btnMultiplicacao.BackColor = Color.White;
             btnMultiplicacao.FlatStyle = FlatStyle.Flat;
-            btnMultiplicacao.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnMultiplicacao.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnMultiplicacao.Location = new Point(311, 98);
             btnMultiplicacao.Name = "btnMultiplicacao";
             btnMultiplicacao.Size = new Size(93, 79);
@@ -228,7 +228,7 @@ namespace Calculadora
             // 
             btn6.BackColor = Color.White;
             btn6.FlatStyle = FlatStyle.Flat;
-            btn6.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn6.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btn6.Location = new Point(212, 98);
             btn6.Name = "btn6";
             btn6.Size = new Size(93, 79);
@@ -241,7 +241,7 @@ namespace Calculadora
             // 
             btn5.BackColor = Color.White;
             btn5.FlatStyle = FlatStyle.Flat;
-            btn5.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn5.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btn5.Location = new Point(113, 98);
             btn5.Name = "btn5";
             btn5.Size = new Size(93, 79);
@@ -254,7 +254,7 @@ namespace Calculadora
             // 
             btnSqrt.BackColor = Color.White;
             btnSqrt.FlatStyle = FlatStyle.Flat;
-            btnSqrt.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSqrt.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnSqrt.Location = new Point(509, 183);
             btnSqrt.Name = "btnSqrt";
             btnSqrt.Size = new Size(93, 79);
@@ -267,7 +267,7 @@ namespace Calculadora
             // 
             btnElevadoQuadrado.BackColor = Color.White;
             btnElevadoQuadrado.FlatStyle = FlatStyle.Flat;
-            btnElevadoQuadrado.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnElevadoQuadrado.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnElevadoQuadrado.Location = new Point(410, 183);
             btnElevadoQuadrado.Name = "btnElevadoQuadrado";
             btnElevadoQuadrado.Size = new Size(93, 79);
@@ -280,7 +280,7 @@ namespace Calculadora
             // 
             btnSubtracao.BackColor = Color.White;
             btnSubtracao.FlatStyle = FlatStyle.Flat;
-            btnSubtracao.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSubtracao.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnSubtracao.Location = new Point(311, 183);
             btnSubtracao.Name = "btnSubtracao";
             btnSubtracao.Size = new Size(93, 79);
@@ -293,7 +293,7 @@ namespace Calculadora
             // 
             btn3.BackColor = Color.White;
             btn3.FlatStyle = FlatStyle.Flat;
-            btn3.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn3.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btn3.Location = new Point(212, 183);
             btn3.Name = "btn3";
             btn3.Size = new Size(93, 79);
@@ -306,7 +306,7 @@ namespace Calculadora
             // 
             btn2.BackColor = Color.White;
             btn2.FlatStyle = FlatStyle.Flat;
-            btn2.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn2.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btn2.Location = new Point(113, 183);
             btn2.Name = "btn2";
             btn2.Size = new Size(93, 79);
@@ -319,7 +319,7 @@ namespace Calculadora
             // 
             btnIgual.BackColor = Color.Green;
             btnIgual.FlatStyle = FlatStyle.Popup;
-            btnIgual.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnIgual.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnIgual.ForeColor = Color.White;
             btnIgual.Location = new Point(410, 268);
             btnIgual.Name = "btnIgual";
@@ -333,7 +333,7 @@ namespace Calculadora
             // 
             btnAdicao.BackColor = Color.White;
             btnAdicao.FlatStyle = FlatStyle.Flat;
-            btnAdicao.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAdicao.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnAdicao.Location = new Point(311, 268);
             btnAdicao.Name = "btnAdicao";
             btnAdicao.Size = new Size(93, 79);
@@ -346,7 +346,7 @@ namespace Calculadora
             // 
             btnModulo.BackColor = Color.White;
             btnModulo.FlatStyle = FlatStyle.Flat;
-            btnModulo.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnModulo.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnModulo.Location = new Point(212, 268);
             btnModulo.Name = "btnModulo";
             btnModulo.RightToLeft = RightToLeft.Yes;
@@ -360,7 +360,7 @@ namespace Calculadora
             // 
             btnDecimal.BackColor = Color.White;
             btnDecimal.FlatStyle = FlatStyle.Flat;
-            btnDecimal.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDecimal.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btnDecimal.Location = new Point(113, 268);
             btnDecimal.Name = "btnDecimal";
             btnDecimal.Size = new Size(93, 79);
@@ -372,7 +372,7 @@ namespace Calculadora
             // 
             btn4.BackColor = Color.White;
             btn4.FlatStyle = FlatStyle.Flat;
-            btn4.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn4.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btn4.Location = new Point(14, 98);
             btn4.Name = "btn4";
             btn4.Size = new Size(93, 79);
@@ -385,7 +385,7 @@ namespace Calculadora
             // 
             btn1.BackColor = Color.White;
             btn1.FlatStyle = FlatStyle.Flat;
-            btn1.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn1.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btn1.Location = new Point(14, 183);
             btn1.Name = "btn1";
             btn1.Size = new Size(93, 79);
@@ -398,7 +398,7 @@ namespace Calculadora
             // 
             btn0.BackColor = Color.White;
             btn0.FlatStyle = FlatStyle.Flat;
-            btn0.Font = new Font("Consolas", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btn0.Font = new Font("Arial", 18F, FontStyle.Bold, GraphicsUnit.Point);
             btn0.Location = new Point(14, 268);
             btn0.Name = "btn0";
             btn0.Size = new Size(93, 79);
