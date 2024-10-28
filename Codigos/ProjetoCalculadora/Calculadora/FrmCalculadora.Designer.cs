@@ -58,6 +58,7 @@ namespace Calculadora
             btn0 = new Button();
             lvHistorico = new ListView();
             colHistorico = new ColumnHeader();
+            colResultado = new ColumnHeader();
             panelBotoes.SuspendLayout();
             SuspendLayout();
             // 
@@ -412,12 +413,11 @@ namespace Calculadora
             lvHistorico.Alignment = ListViewAlignment.Default;
             lvHistorico.BackColor = Color.FromArgb(64, 64, 64);
             lvHistorico.BorderStyle = BorderStyle.None;
-            lvHistorico.Columns.AddRange(new ColumnHeader[] { colHistorico });
+            lvHistorico.Columns.AddRange(new ColumnHeader[] { colHistorico, colResultado });
             lvHistorico.Dock = DockStyle.Top;
-            lvHistorico.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lvHistorico.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             lvHistorico.ForeColor = SystemColors.Window;
             lvHistorico.FullRowSelect = true;
-            lvHistorico.GridLines = true;
             lvHistorico.HeaderStyle = ColumnHeaderStyle.None;
             lvHistorico.Location = new Point(0, 0);
             lvHistorico.MultiSelect = false;
@@ -426,12 +426,17 @@ namespace Calculadora
             lvHistorico.TabIndex = 3;
             lvHistorico.UseCompatibleStateImageBehavior = false;
             lvHistorico.View = View.Details;
+            lvHistorico.DrawItem += lvHistorico_DrawItem;
             lvHistorico.SelectedIndexChanged += lvHistorico_SelectedIndexChanged;
             // 
             // colHistorico
             // 
             colHistorico.Text = "Historico";
-            colHistorico.Width = 605;
+            colHistorico.Width = 450;
+            // 
+            // colResultado
+            // 
+            colResultado.Width = 155;
             // 
             // FrmCalculadora
             // 
@@ -449,6 +454,7 @@ namespace Calculadora
             Name = "FrmCalculadora";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Calculadora";
+            Load += FrmCalculadora_Load;
             Shown += FrmCalculadora_Shown;
             KeyDown += FrmCalculadora_KeyDown;
             KeyPress += FrmCalculadora_KeyPress;
@@ -485,6 +491,7 @@ namespace Calculadora
         private Button btn0;
         private ListView lvHistorico;
         private ColumnHeader colHistorico;
+        private ColumnHeader colResultado;
     }
 }
 

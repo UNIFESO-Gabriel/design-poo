@@ -1,4 +1,5 @@
 ﻿using NCalc;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 using System.Text.RegularExpressions;
 
@@ -47,8 +48,9 @@ namespace Calculadora
 
         private void AddToHistory(string expression, string result)
         {
-            string item = $"{expression.PadRight(expression.Length + 16)}= {result}";
-            lvHistorico.Items.Insert(0, new ListViewItem(item));
+            var item = new ListViewItem(expression);
+            item.SubItems.Add($"= {result}");
+            lvHistorico.Items.Insert(0, item);
         }
 
         public FrmCalculadora()
@@ -271,8 +273,20 @@ namespace Calculadora
                 var raw_exp = txtVisor.Text;
                 var exp = ParseExpression(txtVisor.Text);
                 var expression = new NCalc.Expression(exp);
-                txtVisor.Text = expression.Evaluate().ToString();
+                var result = expression.Evaluate().ToString();
+
+                if (double.IsInfinity(Convert.ToDouble(result)))
+                {
+                    if (exp.Contains("/0"))
+                        throw new DivideByZeroException("Não é possível dividir por zero!");
+                    else
+                        throw new OverflowException("O resultado é muito grande!");
+                }
+
+                txtVisor.Text = result;
+
                 AddToHistory(raw_exp, txtVisor.Text);
+                txtVisor.SelectionStart = txtVisor.Text.Length;
                 calculouExpressao = true;
             }
             catch (EvaluationException ex)
@@ -338,7 +352,18 @@ namespace Calculadora
                     var raw_exp = txtVisor.Text;
                     var exp = ParseExpression(txtVisor.Text);
                     var expression = new NCalc.Expression(exp);
-                    txtVisor.Text = expression.Evaluate().ToString();
+                    var result = expression.Evaluate().ToString();
+
+                    if (double.IsInfinity(Convert.ToDouble(result)))
+                    {
+                        if (exp.Contains("/0"))
+                            throw new DivideByZeroException("Não é possível dividir por zero!");
+                        else
+                            throw new OverflowException("O resultado é muito grande!");
+                    }
+
+                    txtVisor.Text = result;
+
                     AddToHistory(raw_exp, txtVisor.Text);
                     txtVisor.SelectionStart = txtVisor.Text.Length;
                     calculouExpressao = true;
@@ -348,9 +373,19 @@ namespace Calculadora
                     MessageBox.Show($"Houve um erro durante o cálculo da expressão: {ex.Message}");
                     txtVisor.Text = "0";
                 }
+                catch (OverflowException ex)
+                {
+                    MessageBox.Show($"O resultado é muito grande!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtVisor.Text = "0";
+                }
+                catch (DivideByZeroException ex)
+                {
+                    MessageBox.Show($"Não é possível dividir por zero!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtVisor.Text = "0";
+                }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Erro inesperado: {ex.Message}");
+                    MessageBox.Show($"Erro inesperado: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtVisor.Text = "0";
                 }
             }
@@ -364,6 +399,70 @@ namespace Calculadora
                 string expressao = selectedItem.Split('=')[0].Trim();
                 txtVisor.Text = expressao;
             }
+        }
+
+        private void lvHistorico_DrawItem(object sender, DrawListViewItemEventArgs e)
+        {
+            e.DrawDefault = false;
+
+            // Desenha linha separadora superior
+            using (Pen separatorPen = new Pen(Color.LightGray, 1))
+            {
+                e.Graphics.DrawLine(
+                    separatorPen,
+                    e.Bounds.X,
+                    e.Bounds.Y,
+                    e.Bounds.X + e.Bounds.Width,
+                    e.Bounds.Y
+                );
+            }
+
+            // Desenha a expressão (alinhada à esquerda)
+            using (StringFormat sfExpression = new StringFormat() { Alignment = StringAlignment.Near })
+            {
+                Rectangle expressionBounds = new Rectangle(
+                    e.Bounds.X + 5,
+                    e.Bounds.Y + 2,
+                    lvHistorico.Columns[0].Width - 5,
+                    e.Bounds.Height - 2
+                );
+
+                e.Graphics.DrawString(
+                    e.Item.Text,
+                    e.Item.Font,
+                    Brushes.White,
+                    expressionBounds,
+                    sfExpression
+                );
+            }
+
+            // Desenha o resultado com fonte diferenciada (alinhado à esquerda)
+            if (e.Item.SubItems.Count > 1)
+            {
+                using (Font resultFont = new Font(e.Item.Font.FontFamily, e.Item.Font.Size, FontStyle.Bold))
+                using (StringFormat sfResult = new StringFormat() { Alignment = StringAlignment.Near })
+                {
+                    Rectangle resultBounds = new Rectangle(
+                        e.Bounds.X + lvHistorico.Columns[0].Width + 5,
+                        e.Bounds.Y + 2,
+                        lvHistorico.Columns[1].Width - 5,
+                        e.Bounds.Height - 2
+                    );
+
+                    e.Graphics.DrawString(
+                        e.Item.SubItems[1].Text,
+                        resultFont,
+                        Brushes.Cyan,
+                        resultBounds,
+                        sfResult
+                    );
+                }
+            }
+        }
+
+        private void FrmCalculadora_Load(object sender, EventArgs e)
+        {
+            lvHistorico.OwnerDraw = true;
         }
     }
 }
