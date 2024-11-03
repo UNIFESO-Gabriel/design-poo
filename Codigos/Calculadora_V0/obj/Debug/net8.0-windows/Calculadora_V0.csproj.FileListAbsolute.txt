@@ -1,0 +1,17 @@
+C:\Users\gabri\source\repos\Calculadora_V0\bin\Debug\net8.0-windows\Calculadora_V0.exe
+C:\Users\gabri\source\repos\Calculadora_V0\bin\Debug\net8.0-windows\Calculadora_V0.deps.json
+C:\Users\gabri\source\repos\Calculadora_V0\bin\Debug\net8.0-windows\Calculadora_V0.runtimeconfig.json
+C:\Users\gabri\source\repos\Calculadora_V0\bin\Debug\net8.0-windows\Calculadora_V0.dll
+C:\Users\gabri\source\repos\Calculadora_V0\bin\Debug\net8.0-windows\Calculadora_V0.pdb
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\Calculadora_V0.csproj.GenerateResource.cache
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\Calculadora_V0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\Calculadora_V0.AssemblyInfoInputs.cache
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\Calculadora_V0.AssemblyInfo.cs
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\Calculadora_V0.csproj.CoreCompileInputs.cache
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\Calculadora_V0.dll
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\refint\Calculadora_V0.dll
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\Calculadora_V0.pdb
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\Calculadora_V0.genruntimeconfig.cache
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\ref\Calculadora_V0.dll
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\Calculadora_V0.frmCalculadora.resources
+C:\Users\gabri\source\repos\Calculadora_V0\obj\Debug\net8.0-windows\Calculadora_V0.Properties.Resources.resources
