@@ -57,7 +57,16 @@ namespace Calculadora_V0
             var operacoesMatematicas = new OperacoesMatematicas(operacaoMatematica);
 
             // Realiza a operação matemática e armazena o resultado em 'numeroEmMemoria'.
-            numeroEmMemoria = operacoesMatematicas.RealizarOperacao(numeroEmMemoria, numeroVisor);
+            try
+            {
+                numeroEmMemoria = operacoesMatematicas.RealizarOperacao(numeroEmMemoria, numeroVisor);
+            }
+            catch (DivideByZeroException ex)
+            {
+                // Mostra um message box de alerta com a mensagem de erro.
+                MessageBox.Show(ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ResetarCalculadora();
+            }
             
             // Atualiza o visor da calculadora com o valor da operação matemática.
             txtVisor.Text = numeroEmMemoria.ToString();
