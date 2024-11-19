@@ -50,7 +50,7 @@ namespace Calculadora_V0
             // Captura o radio button selecionado.
             var radioButton = grpBotoesRadio.Controls.OfType<RadioButton>().First(r => r.Checked).Name;
 
-            // Captura o nome do radio button selecionado para instanciar a classe concreta em OperacoesMatematicas.cs via reflection.
+            // Utiliza o nome do radio button selecionado para instanciar a classe concreta em OperacoesMatematicas.cs via reflection.
             var operacaoMatematica = fabrica.CriarInstancia(radioButton);
 
             // Instancia a classe OperacoesMatematicas e realiza a operação matemática.
@@ -62,39 +62,6 @@ namespace Calculadora_V0
             // Atualiza o visor da calculadora com o valor da operação matemática.
             txtVisor.Text = numeroEmMemoria.ToString();
         }
-
-        //private void btnEnter_Click(object sender, EventArgs e)
-        //{
-        //    clicouBotaoEnter = true;
-        //    var numeroVisor = float.Parse(txtVisor.Text);
-
-        //    // Verifica qual radio button está selecionado para realizar a operação matemática correspondente.
-        //    if (radioAdicao.Checked)
-        //    {
-        //        numeroEmMemoria += numeroVisor;
-        //    }
-        //    else if (radioSubtracao.Checked)
-        //    {
-        //        numeroEmMemoria -= numeroVisor;
-        //    }
-        //    else if (radioMultiplicacao.Checked)
-        //    {
-        //        numeroEmMemoria *= numeroVisor;
-        //    }
-        //    else if (radioDivisao.Checked)
-        //    {
-        //        // tratar o erro de divisão por zero.
-        //        if (numeroVisor == 0)
-        //        {
-        //            MessageBox.Show("Não é possível dividir por zero.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            ResetarCalculadora();
-        //            return;
-        //        }
-        //        numeroEmMemoria /= numeroVisor;
-        //    }
-        //    // Atualiza o visor da calculadora com o valor da operação matemática.
-        //    txtVisor.Text = numeroEmMemoria.ToString();
-        //}
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {

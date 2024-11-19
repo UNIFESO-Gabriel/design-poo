@@ -59,6 +59,7 @@
             radioMultiplicacao = new RadioButton();
             radioSubtracao = new RadioButton();
             radioAdicao = new RadioButton();
+            radioModulo = new RadioButton();
             grpBotoesRadio.SuspendLayout();
             SuspendLayout();
             // 
@@ -104,7 +105,7 @@
             btnLimpar.TabIndex = 2;
             btnLimpar.Text = "C";
             btnLimpar.UseVisualStyleBackColor = false;
-            btnLimpar.Click += this.btnLimpar_Click;
+            btnLimpar.Click += btnLimpar_Click;
             // 
             // btn9
             // 
@@ -240,6 +241,7 @@
             // 
             grpBotoesRadio.BackColor = Color.Transparent;
             grpBotoesRadio.BackgroundImageLayout = ImageLayout.None;
+            grpBotoesRadio.Controls.Add(radioModulo);
             grpBotoesRadio.Controls.Add(radioDivisao);
             grpBotoesRadio.Controls.Add(radioMultiplicacao);
             grpBotoesRadio.Controls.Add(radioSubtracao);
@@ -258,7 +260,7 @@
             radioDivisao.AutoSize = true;
             radioDivisao.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             radioDivisao.ForeColor = Color.White;
-            radioDivisao.Location = new Point(342, 23);
+            radioDivisao.Location = new Point(342, 14);
             radioDivisao.Name = "radioDivisao";
             radioDivisao.Size = new Size(79, 22);
             radioDivisao.TabIndex = 3;
@@ -270,7 +272,7 @@
             radioMultiplicacao.AutoSize = true;
             radioMultiplicacao.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             radioMultiplicacao.ForeColor = Color.White;
-            radioMultiplicacao.Location = new Point(208, 23);
+            radioMultiplicacao.Location = new Point(208, 14);
             radioMultiplicacao.Name = "radioMultiplicacao";
             radioMultiplicacao.Size = new Size(119, 22);
             radioMultiplicacao.TabIndex = 2;
@@ -282,7 +284,7 @@
             radioSubtracao.AutoSize = true;
             radioSubtracao.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             radioSubtracao.ForeColor = Color.White;
-            radioSubtracao.Location = new Point(95, 23);
+            radioSubtracao.Location = new Point(95, 14);
             radioSubtracao.Name = "radioSubtracao";
             radioSubtracao.Size = new Size(98, 22);
             radioSubtracao.TabIndex = 1;
@@ -295,13 +297,25 @@
             radioAdicao.Checked = true;
             radioAdicao.Font = new Font("Arial", 11.25F, FontStyle.Bold);
             radioAdicao.ForeColor = Color.White;
-            radioAdicao.Location = new Point(9, 23);
+            radioAdicao.Location = new Point(9, 14);
             radioAdicao.Name = "radioAdicao";
             radioAdicao.Size = new Size(73, 22);
             radioAdicao.TabIndex = 0;
             radioAdicao.TabStop = true;
             radioAdicao.Text = "Adição";
             radioAdicao.UseVisualStyleBackColor = true;
+            // 
+            // radioModulo
+            // 
+            radioModulo.AutoSize = true;
+            radioModulo.Font = new Font("Arial", 11.25F, FontStyle.Bold);
+            radioModulo.ForeColor = Color.White;
+            radioModulo.Location = new Point(9, 40);
+            radioModulo.Name = "radioModulo";
+            radioModulo.Size = new Size(79, 22);
+            radioModulo.TabIndex = 4;
+            radioModulo.Text = "Módulo";
+            radioModulo.UseVisualStyleBackColor = true;
             // 
             // frmCalculadora
             // 
@@ -354,5 +368,6 @@
         private RadioButton radioSubtracao;
         private RadioButton radioDivisao;
         private RadioButton radioMultiplicacao;
+        private RadioButton radioModulo;
     }
 }
