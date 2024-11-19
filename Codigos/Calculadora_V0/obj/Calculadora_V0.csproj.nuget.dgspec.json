@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gabri\\source\\repos\\Calculadora_V0\\Calculadora_V0.csproj": {}
+    "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\Calculadora_V0\\Calculadora_V0.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gabri\\source\\repos\\Calculadora_V0\\Calculadora_V0.csproj": {
+    "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\Calculadora_V0\\Calculadora_V0.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gabri\\source\\repos\\Calculadora_V0\\Calculadora_V0.csproj",
+        "projectUniqueName": "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\Calculadora_V0\\Calculadora_V0.csproj",
         "projectName": "Calculadora_V0",
-        "projectPath": "C:\\Users\\gabri\\source\\repos\\Calculadora_V0\\Calculadora_V0.csproj",
+        "projectPath": "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\Calculadora_V0\\Calculadora_V0.csproj",
         "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gabri\\source\\repos\\Calculadora_V0\\obj\\",
+        "outputPath": "D:\\Projetos\\VStudioProjects\\design-poo\\Codigos\\Calculadora_V0\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,7 +64,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.403/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

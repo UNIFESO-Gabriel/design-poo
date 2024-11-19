@@ -42,7 +42,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCalculadora));
             txtVisor = new RichTextBox();
-            btnIgual = new Button();
+            btnEnter = new Button();
             btnLimpar = new Button();
             btn9 = new Button();
             btn8 = new Button();
@@ -78,18 +78,19 @@
             txtVisor.TabStop = false;
             txtVisor.Text = "0";
             // 
-            // btnIgual
+            // btnEnter
             // 
-            btnIgual.BackColor = Color.Aquamarine;
-            btnIgual.BackgroundImageLayout = ImageLayout.Center;
-            btnIgual.FlatStyle = FlatStyle.Flat;
-            btnIgual.Font = new Font("Arial", 27.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnIgual.Location = new Point(322, 108);
-            btnIgual.Name = "btnIgual";
-            btnIgual.Size = new Size(100, 100);
-            btnIgual.TabIndex = 1;
-            btnIgual.Text = "=";
-            btnIgual.UseVisualStyleBackColor = false;
+            btnEnter.BackColor = Color.Aquamarine;
+            btnEnter.BackgroundImageLayout = ImageLayout.Center;
+            btnEnter.FlatStyle = FlatStyle.Flat;
+            btnEnter.Font = new Font("Arial", 20.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEnter.Location = new Point(322, 108);
+            btnEnter.Name = "btnEnter";
+            btnEnter.Size = new Size(100, 100);
+            btnEnter.TabIndex = 1;
+            btnEnter.Text = "Enter";
+            btnEnter.UseVisualStyleBackColor = false;
+            btnEnter.Click += btnEnter_Click;
             // 
             // btnLimpar
             // 
@@ -103,6 +104,7 @@
             btnLimpar.TabIndex = 2;
             btnLimpar.Text = "C";
             btnLimpar.UseVisualStyleBackColor = false;
+            btnLimpar.Click += this.btnLimpar_Click;
             // 
             // btn9
             // 
@@ -319,7 +321,7 @@
             Controls.Add(btn8);
             Controls.Add(btn9);
             Controls.Add(btnLimpar);
-            Controls.Add(btnIgual);
+            Controls.Add(btnEnter);
             Controls.Add(txtVisor);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -329,12 +331,13 @@
             grpBotoesRadio.ResumeLayout(false);
             grpBotoesRadio.PerformLayout();
             ResumeLayout(false);
+            AssignEventHandlerToDigitButtons();
         }
 
         #endregion
 
         private RichTextBox txtVisor;
-        private Button btnIgual;
+        private Button btnEnter;
         private Button btnLimpar;
         private Button btn9;
         private Button btn8;
