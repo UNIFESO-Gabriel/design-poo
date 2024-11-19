@@ -1,3 +1,5 @@
+using Calculadora_V0.Core;
+
 namespace Calculadora_V0
 {
     public partial class frmCalculadora : Form
@@ -5,6 +7,7 @@ namespace Calculadora_V0
         // Variável responsável por armazenar os números recuperados do visor da calculadora.
         private float numeroEmMemoria;
         private bool clicouBotaoEnter;
+        private Fabrica fabrica;
 
         public frmCalculadora()
         {
@@ -13,6 +16,9 @@ namespace Calculadora_V0
 
             // Inicializa a variável privada 'ciclouBotaoEnter' como false.
             clicouBotaoEnter = false;
+
+            // Inicializa a variável privada fabrica.
+            fabrica = new Fabrica();
         }
 
         private void btn_CapturaDigito(object sender, EventArgs e)
@@ -41,33 +47,54 @@ namespace Calculadora_V0
             clicouBotaoEnter = true;
             var numeroVisor = float.Parse(txtVisor.Text);
 
-            // Verifica qual radio button está selecionado para realizar a operação matemática correspondente.
-            if (radioAdicao.Checked)
-            {
-                numeroEmMemoria += numeroVisor;
-            }
-            else if (radioSubtracao.Checked)
-            {
-                numeroEmMemoria -= numeroVisor;
-            }
-            else if (radioMultiplicacao.Checked)
-            {
-                numeroEmMemoria *= numeroVisor;
-            }
-            else if (radioDivisao.Checked)
-            {
-                // tratar o erro de divisão por zero.
-                if (numeroVisor == 0)
-                {
-                    MessageBox.Show("Não é possível dividir por zero.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    ResetarCalculadora();
-                    return;
-                }
-                numeroEmMemoria /= numeroVisor;
-            }
+            // Captura o radio button selecionado.
+            var radioButton = grpBotoesRadio.Controls.OfType<RadioButton>().First(r => r.Checked).Name;
+
+            // Captura o nome do radio button selecionado para instanciar a classe concreta em OperacoesMatematicas.cs via reflection.
+            var operacaoMatematica = fabrica.CriarInstancia(radioButton);
+
+            // Instancia a classe OperacoesMatematicas e realiza a operação matemática.
+            var operacoesMatematicas = new OperacoesMatematicas(operacaoMatematica);
+
+            // Realiza a operação matemática e armazena o resultado em 'numeroEmMemoria'.
+            numeroEmMemoria = operacoesMatematicas.RealizarOperacao(numeroEmMemoria, numeroVisor);
+            
             // Atualiza o visor da calculadora com o valor da operação matemática.
             txtVisor.Text = numeroEmMemoria.ToString();
         }
+
+        //private void btnEnter_Click(object sender, EventArgs e)
+        //{
+        //    clicouBotaoEnter = true;
+        //    var numeroVisor = float.Parse(txtVisor.Text);
+
+        //    // Verifica qual radio button está selecionado para realizar a operação matemática correspondente.
+        //    if (radioAdicao.Checked)
+        //    {
+        //        numeroEmMemoria += numeroVisor;
+        //    }
+        //    else if (radioSubtracao.Checked)
+        //    {
+        //        numeroEmMemoria -= numeroVisor;
+        //    }
+        //    else if (radioMultiplicacao.Checked)
+        //    {
+        //        numeroEmMemoria *= numeroVisor;
+        //    }
+        //    else if (radioDivisao.Checked)
+        //    {
+        //        // tratar o erro de divisão por zero.
+        //        if (numeroVisor == 0)
+        //        {
+        //            MessageBox.Show("Não é possível dividir por zero.", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //            ResetarCalculadora();
+        //            return;
+        //        }
+        //        numeroEmMemoria /= numeroVisor;
+        //    }
+        //    // Atualiza o visor da calculadora com o valor da operação matemática.
+        //    txtVisor.Text = numeroEmMemoria.ToString();
+        //}
 
         private void btnLimpar_Click(object sender, EventArgs e)
         {
