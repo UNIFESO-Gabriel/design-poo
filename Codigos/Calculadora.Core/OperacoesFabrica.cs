@@ -44,8 +44,7 @@
             if (!dictOperacoes.TryGetValue(nomeRadio, out Type tipo))
                 throw new InvalidOperationException($"Operação {nomeRadio.Substring(5)} não encontrada");
 
-            // Cria uma nova instância do tipo encontrado
-            // Convertendo para nossa interface IOperacaoMatematica
+            // Cria uma nova instância do tipo encontrado e converte para a interface IOperacaoMatematica.
             return (IOperacaoMatematica)Activator.CreateInstance(tipo);
         }
     }
